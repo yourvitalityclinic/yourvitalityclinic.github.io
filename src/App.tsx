@@ -79,6 +79,7 @@ function App() {
 
   if (screen == "home") {
     return <HomeScreen
+      aspect={aspect}
       nextScreen={setScreen}
     />
   } else if (screen == "questions") {

@@ -1,10 +1,97 @@
 import { ScreenName } from "./ScreenProps";
 
 interface HomeScreenProps {
+  aspect: number;
   nextScreen: (next: ScreenName) => void;
 }
 
 function HomeScreen(props: HomeScreenProps) {
+  const defaultMenu =
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "row",
+      margin: "8vw",
+      marginTop: "5%",
+    }}>
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "left",
+        flexDirection: "column",
+      }}>
+        <h1>The <b>Wheel of Vitality</b></h1>
+        <p>An interactive assessment designed to self-evaluate your commitment to achieving optimal functioning and well-being in crucial areas of life.</p>
+        <button
+          onClick={() => props.nextScreen("questions")}
+          className='start-button'
+        >Get Started</button>
+      </div>
+
+      <figure style={{
+        textAlign: 'center',
+      }}>
+        <img src="example-chart.png" style={{
+          height: "40vw"
+        }} />
+        <figcaption
+          style={{
+            fontStyle: 'italic',
+            marginTop: "10px",
+          }}
+        >An example wheel</figcaption>
+      </figure>
+    </div>
+
+  const mobileMenu = <div style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    margin: "8vw",
+    marginTop: "0px",
+    height: "100vh",
+  }}>
+    <h1 style={{
+      fontSize: "2.5em"
+    }}>The <b>Wheel of Vitality</b></h1>
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "row",
+      margin: "8vw",
+    }}>
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "left",
+        flexDirection: "column",
+      }}>
+        <p>An interactive assessment designed to self-evaluate your commitment to achieving optimal functioning and well-being in crucial areas of life.</p>
+        <button
+          onClick={() => props.nextScreen("questions")}
+          className='start-button'
+        >Get Started</button>
+      </div>
+
+      <figure style={{
+        textAlign: 'center',
+      }}>
+        <img src="example-chart.png" style={{
+          height: "40vw"
+        }} />
+        <figcaption
+          style={{
+            fontStyle: 'italic',
+            marginTop: "10px",
+          }}
+        >An example wheel</figcaption>
+      </figure>
+    </div>
+  </div>
+
   return (
     <div style={{
       display: "flex",
@@ -13,41 +100,7 @@ function HomeScreen(props: HomeScreenProps) {
       flexDirection: "column",
       width: "100vw",
     }}>
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-        margin: "5vw",
-      }}>
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "left",
-          flexDirection: "column",
-        }}>
-          <h1>The <b>Wheel of Vitality</b></h1>
-          <p>An interactive assessment designed to self-evaluate your commitment to achieving optimal functioning and well-being in crucial areas of life.</p>
-          <button
-            onClick={() => props.nextScreen("questions")}
-            className='start-button'
-          >Get Started</button>
-        </div>
-
-        <figure style={{
-          textAlign: 'center',
-        }}>
-          <img src="example-chart.png" style={{
-            height: "40vw"
-          }} />
-          <figcaption
-            style={{
-              fontStyle: 'italic',
-              marginTop: "10px",
-            }}
-          >An example wheel</figcaption>
-        </figure>
-      </div>
+      {props.aspect > 1.2 ? defaultMenu : mobileMenu}
       <div style={{
         display: "flex",
         justifyContent: "center",
