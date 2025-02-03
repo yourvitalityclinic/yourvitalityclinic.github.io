@@ -84,7 +84,10 @@ function QuestionsScreen(props: QuestionsScreenProps) {
         </div> : <></>}
 
       <div className='question-div'>
-        <p className='question-text'>({questionNumber}/{numberOfQuestions}) {questions[currentSection][currentQuestion]}</p>
+        <p style={{
+          fontWeight: 'bold',
+          fontSize: props.aspect > 1.2 ? "1.5em" : "1.1em",
+        }}>({questionNumber}/{numberOfQuestions}) {questions[currentSection][currentQuestion]}</p>
       </div>
 
       <div className="slider-div">

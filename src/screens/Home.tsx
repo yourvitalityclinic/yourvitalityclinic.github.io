@@ -53,7 +53,7 @@ function HomeScreen(props: HomeScreenProps) {
         justifyContent: "center",
         alignItems: "start",
         flexDirection: "column",
-        margin: "100px",
+        margin: "8vw",
       }}>
         <h2><b>What is the Wheel of Vitality?</b></h2>
         <p>The Wheel of Vitality is a simple yet powerful tool I designed to provide a clear visual representation of all the key areas that contribute to vitality.<br />It emphasises your values, effort, and commitment to actions that foster vitality, rather than focusing on circumstances beyond your control.<br />During the assessment, you will rate how satisfied you currently are with your actions in the following areas:</p>

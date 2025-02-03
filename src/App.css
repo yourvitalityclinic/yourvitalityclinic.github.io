@@ -36,7 +36,7 @@
 }
 
 .section-div {
-  height: 15%;
+  height: 15vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -107,11 +107,6 @@
 }
 
 .current-section {
-  font-weight: bold;
-}
-
-.question-text {
-  font-size: 1.5em;
   font-weight: bold;
 }
 

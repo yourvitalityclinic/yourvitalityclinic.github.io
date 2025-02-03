@@ -35,8 +35,8 @@ function ResultsWheel(props: ResultsWheelProps) {
     maintainAspectRatio: false,
     layout: {
       padding: {
-        left: 150,
-        right: props.aspect > 1.2 ? 290 : 150,
+        left: props.aspect > 1.2 ? 150 : 30,
+        right: props.aspect > 1.2 ? 290 : 30,
       }
     },
     scales: {
@@ -98,7 +98,7 @@ function ResultsWheel(props: ResultsWheelProps) {
 
   return (
     <>
-      {(chartRendered < 2) && <PolarArea data={data} options={options} width={2000} height={1000} ref={chartRef} />}
+      {(chartRendered < 2) && <PolarArea data={data} options={options} width={props.aspect > 1.2 ? 2000 : 1000} height={1000} ref={chartRef} />}
       <img src={base64Image} alt="Chart as Image" style={{
         width: "90vw"
       }} />
