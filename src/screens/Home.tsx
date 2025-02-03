@@ -18,8 +18,7 @@ function HomeScreen(props: HomeScreenProps) {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
-        margin: "100px",
-        marginTop: "50px",
+        margin: "5vw",
       }}>
         <div style={{
           display: "flex",
@@ -39,7 +38,7 @@ function HomeScreen(props: HomeScreenProps) {
           textAlign: 'center',
         }}>
           <img src="example-chart.png" style={{
-            height: "80vh"
+            height: "40vw"
           }} />
           <figcaption
             style={{

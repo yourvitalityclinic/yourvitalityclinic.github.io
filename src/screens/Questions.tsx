@@ -3,6 +3,7 @@ import SectionsBar from "../components/SectionsBar";
 import QuizSlider from "../components/Slider";
 import { ScreenName } from "./ScreenProps";
 import questions from '../questions.json'
+import AltSectionsBar from "../components/AltSectionsBar";
 
 export interface QuestionsScreenProps {
   nextScreen: (next: ScreenName) => void;
@@ -10,10 +11,12 @@ export interface QuestionsScreenProps {
   colors: string[];
   dimColors: string[];
   answers: number[][];
+  aspect: number;
   setAnswers: (newValue: number[][]) => void;
 }
 
 function QuestionsScreen(props: QuestionsScreenProps) {
+  console.log(props.aspect)
   let numberOfQuestions = props.answers.reduce((acc, v) => acc + v.length, 0)
 
   const [currentSection, setCurrentSection] = useState(0)
@@ -52,17 +55,23 @@ function QuestionsScreen(props: QuestionsScreenProps) {
     }}>
 
       <div className="section-div">
-        <SectionsBar
-          sections={props.sections}
-          colors={props.colors}
-          dimColors={props.dimColors}
-          currentSection={currentSection}
-        />
+        {props.aspect > 1.2 ?
+          <SectionsBar
+            sections={props.sections}
+            colors={props.colors}
+            dimColors={props.dimColors}
+            currentSection={currentSection}
+          /> : <AltSectionsBar
+            sections={props.sections}
+            colors={props.colors}
+            dimColors={props.dimColors}
+            currentSection={currentSection}
+          />}
       </div>
 
       {currentSection === (props.sections.length - 1) ?
         <div className="skip-div">
-          <p>Not everyone believes that being on a spiritual journey contributes to vitality and full aliveness. You can complete this section to reflect on this aspect of your life, but it will not be included in your vitality wheel chart, or you can skip it entirely.</p>
+          <p>Not everyone believes that being on a spiritual journey contributes to vitality and full aliveness. You can complete this section to reflect on this aspect of your life, or you can skip it entirely.</p>
           <button
             className="start-button"
             onClick={() => {

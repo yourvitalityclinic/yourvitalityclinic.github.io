@@ -7,6 +7,7 @@ interface ResultsScreenProps {
   sections: string[];
   colors: string[];
   answers: number[][];
+  aspect: number;
 }
 
 function ResultsScreen(props: ResultsScreenProps) {
@@ -26,6 +27,7 @@ function ResultsScreen(props: ResultsScreenProps) {
           sections={props.sections}
           colors={props.colors}
           answers={props.answers}
+          aspect={props.aspect}
         />
       </div>
       <div style={{

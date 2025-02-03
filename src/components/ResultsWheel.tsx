@@ -9,6 +9,7 @@ interface ResultsWheelProps {
   sections: string[];
   colors: string[];
   answers: number[][];
+  aspect: number;
 }
 
 function ResultsWheel(props: ResultsWheelProps) {
@@ -35,7 +36,7 @@ function ResultsWheel(props: ResultsWheelProps) {
     layout: {
       padding: {
         left: 150,
-        right: 290,
+        right: props.aspect > 1.2 ? 290 : 150,
       }
     },
     scales: {
@@ -47,7 +48,7 @@ function ResultsWheel(props: ResultsWheelProps) {
     },
     plugins: {
       legend: {
-        display: true,
+        display: props.aspect > 1.2,
         position: 'left',
         layout: {
         }
@@ -61,7 +62,7 @@ function ResultsWheel(props: ResultsWheelProps) {
         textStrokeWidth: 1,
         font: {
           family: 'Roboto',
-          size: 15,
+          size: 17,
         },
         color: (context: Context) => {
           const datasetIndex = context.datasetIndex;
@@ -98,8 +99,8 @@ function ResultsWheel(props: ResultsWheelProps) {
   return (
     <>
       {(chartRendered < 2) && <PolarArea data={data} options={options} width={2000} height={1000} ref={chartRef} />}
-      <img src={base64Image} alt="Chart as Image" className="rendered-chart" style={{
-        height: "80vh"
+      <img src={base64Image} alt="Chart as Image" style={{
+        width: "90vw"
       }} />
     </>
   )

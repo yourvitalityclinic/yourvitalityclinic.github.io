@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { ArcElement, CategoryScale, Chart, Legend, RadialLinearScale, Title, Tooltip } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -65,6 +65,17 @@ const sectionsShort = [
 function App() {
   const [screen, setScreen] = useState<ScreenName>("home")
   const [answers, setAnswers] = useState(questions.map(v => v.map(() => 1)))
+  const [aspect, setAspect] = useState(window.innerWidth / window.innerHeight)
+
+  const handleWindowResize = () => {
+    setAspect(window.innerWidth / window.innerHeight)
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize)
+    return () => {
+      window.removeEventListener('resize', handleWindowResize)
+    }
+  }, [])
 
   if (screen == "home") {
     return <HomeScreen
@@ -77,6 +88,7 @@ function App() {
       colors={colors}
       dimColors={dimColors}
       answers={answers}
+      aspect={aspect}
       setAnswers={setAnswers}
     /></div>
   } else if (screen == "results") {
@@ -85,6 +97,7 @@ function App() {
       sections={sectionsShort}
       colors={colors}
       answers={answers}
+      aspect={aspect}
       retake={() => {
         setScreen("questions")
         setAnswers(questions.map(v => v.map(() => 1)))
