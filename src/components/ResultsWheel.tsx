@@ -10,6 +10,8 @@ interface ResultsWheelProps {
   colors: string[];
   answers: number[][];
   aspect: number;
+  base64Image: string;
+  setBase64Image: (string) => void;
 }
 
 function ResultsWheel(props: ResultsWheelProps) {
@@ -84,14 +86,13 @@ function ResultsWheel(props: ResultsWheelProps) {
   };
 
   const chartRef = useRef(null)
-  const [base64Image, setBase64Image] = useState('')
   const [chartRendered, setChartRendered] = useState(0)
 
   useEffect(() => {
     if (chartRef.current) {
       const chartInstance = chartRef.current
       const img = chartInstance.toBase64Image()
-      setBase64Image(img)
+      props.setBase64Image(img)
       setChartRendered(chartRendered + 1)
     }
   })
@@ -99,7 +100,7 @@ function ResultsWheel(props: ResultsWheelProps) {
   return (
     <>
       {(chartRendered < 2) && <PolarArea data={data} options={options} width={props.aspect > 1.2 ? 2000 : 1000} height={1000} ref={chartRef} />}
-      <img src={base64Image} alt="Chart as Image" style={{
+      <img src={props.base64Image} alt="Chart as Image" style={{
         width: "90vw"
       }} />
     </>
