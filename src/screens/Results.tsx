@@ -38,9 +38,7 @@ function ResultsScreen(props: ResultsScreenProps) {
       }}>Must be over 18 and have agreed to the privacy policy</span>)
     } else {
 
-      setConfirmation(<span style={{
-        color: "yellow"
-      }}>Connecting to server, please wait ...</span>)
+      setConfirmation(<span>Sending email. This may take a few minutes.</span>)
 
       const requestOptions = {
         method: "POST",

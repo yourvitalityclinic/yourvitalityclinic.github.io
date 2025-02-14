@@ -12,7 +12,7 @@ function QuizSlider(props: QuizSliderProps) {
       label: (x + 1).toString()
     }
   })
-  marks[0].label = "0 (Not at all)";
+  marks[0].label = "1 (Not at all)";
   marks[9].label = "10 (Fully)";
 
   return (
