@@ -38,7 +38,7 @@ function ResultsScreen(props: ResultsScreenProps) {
       }}>Must be over 18 and have agreed to the privacy policy</span>)
     } else {
 
-      setConfirmation(<span>Sending email. This may take a few minutes.</span>)
+      setConfirmation(<span>Sending email. This may take a few minutes. Keep this page open to ensure the email is sent.</span>)
 
       const requestOptions = {
         method: "POST",

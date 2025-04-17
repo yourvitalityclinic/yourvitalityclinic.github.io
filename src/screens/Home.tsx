@@ -15,6 +15,10 @@ function HomeScreen(props: HomeScreenProps) {
       margin: "8vw",
       marginTop: "5%",
     }}>
+      <button
+        onClick={() => props.nextScreen("questions")}
+        className='floating-button'
+      >Start the assessment</button>
       <div style={{
         display: "flex",
         justifyContent: "center",
@@ -23,10 +27,6 @@ function HomeScreen(props: HomeScreenProps) {
       }}>
         <h1>The <b>Wheel of Vitality</b></h1>
         <p>An interactive assessment designed to self-evaluate your commitment to achieving optimal functioning and well-being in crucial areas of life.</p>
-        <button
-          onClick={() => props.nextScreen("questions")}
-          className='start-button'
-        >Get Started</button>
       </div>
 
       <figure style={{
@@ -47,6 +47,10 @@ function HomeScreen(props: HomeScreenProps) {
     marginTop: "0px",
     height: "100vh",
   }}>
+    <button
+      onClick={() => props.nextScreen("questions")}
+      className='floating-button-mobile'
+    >Start the assessment</button>
     <h1 style={{
       fontSize: "2.5em"
     }}>The <b>Wheel of Vitality</b></h1>
@@ -58,11 +62,6 @@ function HomeScreen(props: HomeScreenProps) {
         width: "70vw",
       }} />
     </figure>
-
-    <button
-      onClick={() => props.nextScreen("questions")}
-      className='start-button'
-    >Get Started</button>
   </div>
 
   return (
@@ -108,11 +107,6 @@ function HomeScreen(props: HomeScreenProps) {
         <p>
           My Wheel of Vitality assessment is completely free. If you'd like to receive your results via email, I'll ask your permission to subscribe to my occasional newsletter. Register and have your results delivered straight to your mailbox.<br />You'll also gain access to the Vitality Clinic newsletter, packed with valuable tips, exciting projects, and practical exercises to keep you motivated and help you work toward your best life.<br />But that's not all! As a subscriber, you'll receive an exclusive offer to book your first 60-minute psychological vitality consultation with me at 50% off the regular price. This session will help you identify your goals and the barriers holding you back from a more fulfilling life. And don't worry- You can unsubscribe at any time.
         </p>
-
-        <button
-          onClick={() => props.nextScreen("questions")}
-          className='start-button2'
-        >Start the assessment</button>
       </div>
     </div >
   )

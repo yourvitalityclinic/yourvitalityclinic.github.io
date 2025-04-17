@@ -21,12 +21,60 @@ function ResultsWheel(props: ResultsWheelProps) {
     labels: props.sections,
     datasets: [
       {
-        label: 'Overall Score',
+        label: 'Outer Labels (Text)',
         data: chartData,
         backgroundColor: props.colors,
-        borderColor: 'rgb(255, 255, 255)'
+        borderColor: 'rgb(255, 255, 255)',
+        datalabels: {
+          textStrokeColor: 'black',
+          textStrokeWidth: 1,
+          font: (context: Context) => {
+            const value = context.dataset.data[context.dataIndex] as number;
+            const minSize = 13;
+            const maxSize = 50;
+            const scaledSize = minSize + (maxSize - minSize) * (value / 10);
+            return {
+              size: scaledSize
+            }
+          },
+          color: (context: Context) => {
+            const datasetIndex = context.datasetIndex;
+            const index = context.dataIndex;
+            return context.chart.data.datasets[datasetIndex].backgroundColor[index];
+          },
+          formatter: (v: number, context: Context) => {
+            let key = (context.chart.data.labels as string[])[context.dataIndex];
+            return key;
+          },
+          anchor: 'end',
+          align: 'end',
+          offset: (context: Context) => context.chart.width / 100,
+        },
       },
-    ],
+      {
+        label: 'Inner Numbers',
+        data: chartData,
+        backgroundColor: 'rgba(0, 0, 0, 0)', // invisible
+        borderColor: 'rgba(0, 0, 0, 0)', // invisible
+        datalabels: {
+          display: true,
+          anchor: 'center',
+          align: 'center',
+          color: 'black',
+          font: (context: Context) => {
+            const value = context.dataset.data[context.dataIndex] as number;
+            const minSize = 5;
+            const maxSize = 50;
+            const scaledSize = minSize + (maxSize - minSize) * (value / 10);
+            return {
+              size: scaledSize,
+              weight: 'bold',
+            }
+          },
+          formatter: (value: number) => value.toFixed(1),
+        },
+      }
+    ]
   };
 
   const options = {
@@ -37,6 +85,8 @@ function ResultsWheel(props: ResultsWheelProps) {
     maintainAspectRatio: false,
     layout: {
       padding: {
+        top: 100,
+        bottom: 100,
         left: props.aspect > 1.2 ? 150 : 30,
         right: props.aspect > 1.2 ? 290 : 30,
       }
@@ -52,36 +102,11 @@ function ResultsWheel(props: ResultsWheelProps) {
       legend: {
         display: props.aspect > 1.2,
         position: 'left',
-        layout: {
-        }
       },
       title: {
-        display: false,
-        text: 'Vitality Coach result',
       },
-      datalabels: {
-        textStrokeColor: 'black',
-        textStrokeWidth: 1,
-        font: {
-          family: 'Roboto',
-          size: 17,
-        },
-        color: (context: Context) => {
-          const datasetIndex = context.datasetIndex;
-          const index = context.dataIndex;
-          // Access the color of the specific segment
-          return context.chart.data.datasets[datasetIndex].backgroundColor[index];
-        },
-        formatter: (v: number, context: Context) => {
-          let key = (context.chart.data.labels as string[])[context.dataIndex];
-          return key;
-        },
-        anchor: 'end',
-        align: 'end',
-        offset: (context: Context) => {
-          return context.chart.width / 100;
-        },
-      }
+      display: false,
+      text: 'Vitality Coach result',
     },
   };
 
@@ -99,7 +124,7 @@ function ResultsWheel(props: ResultsWheelProps) {
 
   return (
     <>
-      {(chartRendered < 2) && <PolarArea data={data} options={options} width={props.aspect > 1.2 ? 2000 : 1000} height={1000} ref={chartRef} />}
+      {(chartRendered < 3) && <PolarArea data={data} options={options} width={props.aspect > 1.2 ? 2000 : 1000} height={1000} ref={chartRef} />}
       <img src={props.base64Image} alt="Chart as Image" style={{
         width: "90vw"
       }} />
